@@ -1,0 +1,111 @@
+/* ==========================================================================
+   Navbar Styles - Mejoras visuales manteniendo Tailwind
+   ========================================================================== */
+
+/* Mejora de la línea bajo los links */
+.nav-underline {
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 2px;
+    border-radius: 2px;
+}
+
+/* Refinamiento del hover en los links */
+.nav-link-hover {
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link-hover:hover {
+    transform: translateY(-1px);
+}
+
+/* Refinamiento del botón calculadora */
+.calculator-button {
+    background: linear-gradient(110deg, #FF8A00, #FFA940 45%, #FF8A00);
+    background-size: 200% auto;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px -3px rgba(255, 138, 0, 0.2);
+}
+
+.calculator-button:hover {
+    background-position: right center;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px -5px rgba(255, 138, 0, 0.3);
+}
+
+/* Focus states para accesibilidad */
+.nav-link-hover:focus-visible,
+.calculator-button:focus-visible {
+    outline: 2px solid #FF8A00;
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+/* Media queries para ajustar espaciado en resoluciones específicas */
+@media (max-width: 1280px) and (min-width: 1024px) {
+    .nav-link-hover {
+        font-size: 16px;
+        /* Reducimos ligeramente el tamaño en resoluciones medias */
+    }
+
+}
+
+/* Sidebar Menu Styles */
+.sidebar-menu {
+    width: min(320px, calc(100% - 20px));
+    background-color: #111111 !important; /* Forzamos el color sólido */
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #111111;
+    overflow-y: auto;
+}
+
+.sidebar-nav-link {
+    position: relative;
+    padding: 1.25rem 2rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.125rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    background-color: #111111;
+}
+
+.sidebar-nav-link:hover {
+    color: #FF8A00;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Mejora del botón de cierre */
+.sidebar-close {
+    padding: 1rem;
+    color: white;
+    z-index: 100;
+}
+
+/* Animación del botón hamburguesa */
+.hamburger-line {
+    transition: all 0.3s ease;
+}
+
+.menu-open .hamburger-line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-open .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-open .hamburger-line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+

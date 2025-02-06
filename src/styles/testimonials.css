@@ -1,0 +1,271 @@
+/* Estilos base de la card */
+.testimonial-card {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.02),
+        0 12px 24px rgba(0, 0, 0, 0.08);
+    padding: 24px;
+    width: 380px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Ajustes de espaciado interno de la card */
+.testimonial-card .flex.gap-1 {
+    margin-bottom: 0.3rem;
+}
+
+.testimonial-card p {
+    margin: 0.2rem 0;
+}
+
+.testimonial-card .flex.items-center.gap-3 {
+    margin-top: 0.5rem;
+}
+
+/* Animaciones de entrada */
+@keyframes slideInLeft {
+    0% {
+        transform: translateX(-1000px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    0% {
+        transform: translateX(1000px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Clases de animación */
+.slide-in-left {
+    opacity: 0;
+    transform: translateX(-1000px);
+}
+
+.slide-in-right {
+    opacity: 0;
+    transform: translateX(1000px);
+}
+
+.in-view.slide-in-left {
+    animation: slideInLeft 1s ease-out forwards;
+}
+
+.in-view.slide-in-right {
+    animation: slideInRight 1s ease-out forwards;
+}
+
+/* Delays de animación */
+.delay-1.in-view {
+    animation-delay: 0.2s;
+}
+
+.delay-2.in-view {
+    animation-delay: 0.4s;
+}
+
+.delay-3.in-view {
+    animation-delay: 0.6s;
+}
+
+.delay-4.in-view {
+    animation-delay: 0.8s;
+}
+
+/* Animación de los puntos del mapa */
+@keyframes custom-ping {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(2);
+        opacity: 1;
+    }
+}
+
+.map-point-ping {
+    animation: custom-ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+    background-color: rgba(255, 153, 0, 0.4);
+}
+
+/* Animación flotante del mapa */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.map-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Responsive */
+@media (max-width: 1280px) {
+    .testimonial-card {
+        width: 340px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Contenedor principal */
+    .testimonials-container {
+        position: relative !important;
+        height: auto !important;
+        padding: 2rem 0;
+    }
+
+    /* Mapa */
+    .map-container {
+        width: 70% !important;
+        height: 550px !important;
+        top: 50% !important;
+        transform: translate(-50%, -65%) !important;
+        z-index: 1;
+    }
+
+    /* Ajustes para las cards */
+    .testimonial-card[style*="left"] {
+        left: 2% !important;
+        width: 280px !important;
+        box-shadow:
+            0 4px 6px rgba(0, 0, 0, 0.02),
+            0 12px 16px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    .testimonial-card[style*="right"] {
+        right: 2% !important;
+        width: 280px !important;
+        box-shadow:
+            0 4px 6px rgba(0, 0, 0, 0.02),
+            0 12px 16px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    /* Ajustes de posición vertical */
+    .testimonial-card:nth-child(1),
+    .testimonial-card:nth-child(2) {
+        top: 12% !important;
+        z-index: 2;
+    }
+
+    .testimonial-card:nth-child(3),
+    .testimonial-card:nth-child(4) {
+        top: 50% !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        z-index: 2;
+    }
+
+
+}
+
+@media (max-width: 480px) {
+
+    /* Contenedor principal */
+    .testimonials-container {
+        position: relative !important;
+        height: 100vh !important;
+    }
+
+    /* Mapa */
+    .map-container {
+        width: 100% !important;
+        height: 480px !important;
+        top: 48% !important;
+        transform: translate(-50%, -50%) !important;
+    }
+
+    /* Ajustes para las cards */
+    .testimonial-card {
+        width: 75% !important;
+        max-width: 300px !important;
+        padding: 20px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        right: auto !important;
+    }
+
+    /* Ajustes de texto y espaciado */
+    .testimonial-card p {
+        font-size: 0.95rem !important;
+        line-height: 1.5 !important;
+        margin: 0rem 0 !important;
+    }
+
+
+    /* Posicionamiento específico */
+    .testimonial-card:nth-child(1) {
+        top: 3% !important;
+        left: 42% !important;
+    }
+
+    .testimonial-card:nth-child(2) {
+        top: 45% !important;
+        left: 58% !important;
+    }
+
+    /* Ocultar las otras cards */
+    .testimonial-card:nth-child(3),
+    .testimonial-card:nth-child(4) {
+        display: none !important;
+    }
+}
+
+@media (max-width: 374px) {
+
+    /* Ajustes para pantallas muy pequeñas */
+    .testimonial-card {
+        width: 100% !important;
+        max-width: 260px !important;
+        /* Cards más pequeñas */
+        padding: 16px !important;
+        /* Padding interno reducido */
+    }
+
+    /* Ajuste de texto dentro de las cards */
+    .testimonial-card p {
+        font-size: 0.9rem !important;
+        /* Texto ligeramente más pequeño */
+    }
+
+
+    /* Posicionamiento específico */
+    .testimonial-card:nth-child(1) {
+        top: 3% !important;
+        left: 45% !important;
+    }
+
+    .testimonial-card:nth-child(2) {
+        top: 58% !important;
+        left: 55% !important;
+    }
+
+    /* Ajuste del mapa */
+    .map-container {
+        width: 90% !important;
+        height: 400px !important;
+        /* Mapa un poco más pequeño */
+    }
+}
