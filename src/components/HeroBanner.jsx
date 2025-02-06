@@ -147,7 +147,7 @@ export default function HeroBanner() {
               className="text-white text-lg mb-8 hero-description"
               aria-label="Descripción de nuestros servicios"
             >
-              Transformamos la complejidad en simplicidad. Con tecnología de punta
+              Transformamos la complejidad en simplicidad. Con nuevas tecnologías
               y experiencia comprobada, hacemos que importar sea tan simple como hacer un click.
             </p>
             <div className="flex gap-4">

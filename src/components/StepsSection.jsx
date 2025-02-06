@@ -18,7 +18,7 @@ const steps = [
   },
   {
     number: '03',
-    title: 'Dejanos Trabajar',
+    title: 'Trabajamos por vos',
     description: 'Gestionamos todo el proceso mientras vos monitoreás cada paso desde nuestra plataforma.',
     image: '/paso-3.png',
   },
