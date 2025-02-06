@@ -70,7 +70,7 @@ const Footer = () => {
           </div>
 
           {/* Redes sociales */}
-          <div className="flex flex-col items-start w-full mt-2">
+          <div className="flex flex-col items-start w-full">
             <h4 className="text-lg font-semibold mb-8">Síguenos</h4>
             <div className="flex items-center gap-3">
               {[
