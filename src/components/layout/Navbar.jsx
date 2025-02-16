@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 import '../../styles/layout.css'
 
 
@@ -11,6 +12,9 @@ export default function Navbar() {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isClient, setIsClient] = useState(false)
+  const pathname = usePathname()
+  
+  const isHomePage = pathname === '/'
 
   useEffect(() => {
     setIsClient(true)
@@ -59,18 +63,21 @@ export default function Navbar() {
 
   const navLinks = [
     { href: '/', label: 'Inicio', section: 'hero' },
-    { href: '/', label: 'Nosotros', section: 'about' },
-    { href: '/', label: 'Servicios', section: 'services' },
+    { href: '/nosotros', label: 'Nosotros', section: 'about' },
+    { href: '/servicios', label: 'Servicios', section: 'services' },
     { href: '/', label: '¿Qué puedo traer?', section: 'products' },
-    { href: '/', label: 'Contacto', section: 'contact' }
+    { href: '/contacto', label: 'Contacto', section: 'contact' }
   ]
+
 
   return (
     <nav
       className={`fixed w-full z-[100] transition-all duration-500 ease-in-out py-4
         ${scrolled && !isMenuOpen
           ? 'bg-white/90 backdrop-blur-md shadow-sm'
-          : 'bg-transparent'
+          : isHomePage 
+            ? 'bg-transparent' 
+            : 'bg-white/90 backdrop-blur-md shadow-sm'
         }
       `}
     >
@@ -80,14 +87,15 @@ export default function Navbar() {
           <div className="lg:mr-40">
             <Link href="/" className="flex items-center space-x-3 group">
               <Image
-                src="/icons/logo.png"
+                src="/svgs/logos/LOGO.svg"
                 alt="Argentina Importaciones"
                 width={50}
                 height={50}
                 className="transition-all duration-300 group-hover:scale-105"
+
               />
               <div className={`font-akira flex flex-col transition-colors duration-300 ${
-                scrolled && !isMenuOpen ? 'text-smoky' : 'text-white'
+                (scrolled && !isMenuOpen) || !isHomePage ? 'text-smoky' : 'text-white'
               }`}>
                 <span className="text-xl leading-tight">ARGENTINA</span>
                 <span className="text-sm -mt-1">IMPORTACIONES</span>
@@ -101,8 +109,9 @@ export default function Navbar() {
               <Link
                 key={href}
                 href={href}
-                className={`relative group nav-link-hover whitespace-nowrap text-[17px] transition-all duration-300 ${scrolled ? 'text-smoky' : 'text-white'
-                  }`}
+                className={`relative group nav-link-hover whitespace-nowrap text-[17px] transition-all duration-300 ${
+                  (scrolled && !isMenuOpen) || !isHomePage ? 'text-smoky' : 'text-white'
+                }`}
               >
                 <span>{label}</span>
                 <span className={`nav-underline absolute bottom-0 left-0 h-0.5 bg-orange transition-all duration-300

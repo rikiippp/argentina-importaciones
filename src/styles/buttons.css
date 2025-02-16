@@ -1,0 +1,79 @@
+/* Base button styles */
+.button-base {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  z-index: 3;
+}
+
+/* Primary button */
+.button-primary {
+  background: linear-gradient(110deg,
+    #ff8a00 0%,
+    #ff8a00 45%,
+    #ffa940 50%,
+    #ff8a00 55%,
+    #ff8a00 100%);
+  background-size: 200% auto;
+}
+
+/* Secondary button */
+.button-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Shared hover effects */
+.button-base:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Light effect animation */
+@keyframes lightEffect {
+  0% {
+    transform: translateX(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(45deg);
+  }
+}
+
+/* Light effect for buttons */
+.button-base:not(:hover)::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  transform: rotate(45deg);
+  animation: lightEffect 3s infinite;
+  pointer-events: none;
+}
+
+/* Icon animation */
+.button-base svg {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.button-base:hover svg {
+  transform: translateX(4px);
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .button-base,
+  .button-base::after,
+  .button-base svg {
+    transition: none;
+    animation: none;
+  }
+} 

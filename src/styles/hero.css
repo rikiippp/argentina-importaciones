@@ -2,23 +2,18 @@
    1. Contenedor Principal Hero
    ========================================================================== */
 .hero-container {
-    position: relative;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #4285f4, #64b5f6);
-    overflow: hidden;
-    padding-bottom: 150px;
+    @apply relative min-h-screen overflow-hidden;
+    background: linear-gradient(to bottom, #2e54ce, #2b5ce2);
 }
 
 .hero-container::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(
-        circle at 50% 50%,
-        rgba(255, 255, 255, 0.15) 0%,
-        rgba(255, 255, 255, 0.05) 35%,
-        rgba(255, 255, 255, 0) 70%
-    );
+    background: radial-gradient(circle at 50% 50%,
+            rgba(255, 255, 255, 0.15) 0%,
+            rgba(255, 255, 255, 0.05) 35%,
+            rgba(255, 255, 255, 0) 70%);
     pointer-events: none;
     z-index: 1;
 }
@@ -26,144 +21,136 @@
 /* ==========================================================================
    2. Contenido Principal
    ========================================================================== */
+.hero-content-wrapper {
+    @apply relative container mx-auto 
+           flex flex-col items-center 
+           pt-28 md:pt-32 pb-20  /* Ajuste de padding */
+           px-4 md:px-6 
+           z-[3];
+    /* Contenido principal por encima de nubes */
+}
+
+/* Contenedor de texto */
+.hero-text-section {
+    @apply w-full max-w-[800px]
+           flex flex-col items-center
+           z-[4];
+}
+
 .hero-content {
-    height: 190px;
-    display: flex;
-    align-items: center;
-    opacity: 0;
-    animation: fadeSlideUp 0.8s ease forwards;
+    @apply w-full
+           flex items-center justify-center
+           min-h-[120px] md:min-h-[140px];
+}
+
+.typing-container {
+    @apply w-full 
+           relative block 
+           text-center
+           p-0 m-0;
+}
+
+/* Eliminar el fondo que puede estar afectando */
+.typing-container::before {
+    display: none;  /* Removemos temporalmente */
+}
+
+/* Cursor */
+.animate-blink {
+    @apply inline-block ml-1;
 }
 
 .hero-text {
-    color: white;
-    font-size: clamp(2.5rem, 4vw, 3.5rem);
-    font-weight: bold;
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
-    animation: fadeInUp 0.8s ease-out;
+    @apply text-[2.5rem] md:text-[3.5rem] lg:text-[4rem]
+           font-bold
+           text-white
+           text-center
+           leading-tight;
+    text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.08),  /* Sombra principal más sutil */
+        0 0 30px rgba(255, 255, 255, 0.08); /* Resplandor suave */
 }
 
 .hero-description {
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-    opacity: 0;
-    animation: fadeSlideUp 0.8s ease forwards 0.3s;
+    @apply text-white/90 
+           text-lg md:text-xl 
+           text-center 
+           max-w-[85%] md:max-w-[75%] 
+           mx-auto 
+           mt-10;  /* Espaciado consistente */
+}
+
+/* Contenedor de botones */
+.hero-buttons {
+    @apply flex flex-col sm:flex-row 
+           gap-4 
+           justify-center 
+           w-full max-w-[85%] md:max-w-[75%]  /* Mismo ancho que la descripción */
+           mx-auto
+           mt-10;  /* Mismo espaciado que la descripción */
+}
+
+/* Ajuste de los botones individuales */
+.button-base {
+    @apply w-full sm:w-auto  /* Full width en mobile, auto en desktop */
+           min-w-[200px]     /* Ancho mínimo para mantener proporción */
+           px-8 py-4;
 }
 
 /* ==========================================================================
-   3. Botones
+   3. Nubes y Paracaídas
    ========================================================================== */
-.button-primary {
-    background: linear-gradient(110deg,
-            #ff8a00 0%,
-            #ff8a00 45%,
-            #ffa940 50%,
-            #ff8a00 55%,
-            #ff8a00 100%);
-    background-size: 200% auto;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
+.clouds-layer {
+    @apply absolute inset-0 pointer-events-none;
+    z-index: 1;  /* Definimos explícitamente */
 }
 
-.button-primary:not(:hover)::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-        45deg,
-        transparent 0%,
-        rgba(255, 255, 255, 0.1) 50%,
-        transparent 100%
-    );
-    transform: rotate(45deg);
-    animation: lightEffect 3s infinite;
-    pointer-events: none;
+.clouds-container {
+    @apply relative w-full h-full;
 }
 
-.button-primary:hover {
-    animation: buttonShine 2s linear infinite;
-    transform: scale(1.05);
-    box-shadow: 0 10px 20px -10px rgba(255, 138, 0, 0.5);
-}
-
-.button-secondary {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-    z-index: 3;
-}
-
-.button-secondary:not(:hover)::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-        45deg,
-        transparent 0%,
-        rgba(255, 255, 255, 0.1) 50%,
-        transparent 100%
-    );
-    transform: rotate(45deg);
-    animation: lightEffect 4s infinite;
-    pointer-events: none;
-}
-
-.button-secondary:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.3);
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px -8px rgba(255, 255, 255, 0.3);
-}
-
-/* ==========================================================================
-   4. Nubes y Paracaídas
-   ========================================================================== */
+/* Ajustes individuales de nubes */
 .cloud-layer-1 {
-    opacity: 0.9;
-    top: 0%;
-    right: -16%;
-    position: absolute;
-    z-index: 2;
+    @apply absolute 
+           -top-[5%] -right-[15%]  /* Más a la derecha */
+           w-auto h-auto;
+    opacity: 0.85;
+    z-index: 1;  /* Explícito para asegurar */
 }
 
 .cloud-layer-2 {
-    opacity: 0.70;
-    top: 0%;
-    left: -9%;
-    position: absolute;
-    z-index: 0;
+    @apply absolute 
+           top-[25%] -left-[8%]
+           w-auto h-auto;
+    opacity: 0.8;
+    z-index: 1;
 }
 
 .cloud-layer-3 {
-    opacity: 0.95;
-    bottom:-7%;
-    left: 50%;
-    position: absolute;
-    transform: translateX(-50%);
-    z-index: 2;
+    @apply absolute 
+           -bottom-[10%]  /* Ajuste para mayor cobertura */
+           left-[-10%]  /* Compensar el ancho extra */
+           w-auto h-auto;
+    opacity: 0.7;
+    z-index: 1;
+}
+
+/* Paracaídas por encima */
+.parachute-wrapper {
+    @apply absolute 
+           top-4 right-4 md:right-8 
+           w-[180px] md:w-[250px] lg:w-[300px];
+    z-index: 2;  /* Explícitamente por encima de las nubes */
 }
 
 .parachute-container {
-    position: relative;
-    z-index: 4;
+    @apply absolute top-0 right-0 w-[180px] md:w-[250px] lg:w-[300px] transform -translate-y-4 md:translate-y-0 z-[5];
+    /* Aseguramos que esté por encima de todo */
 }
 
-.parachute-follow {
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform;
-}
 
 /* ==========================================================================
-   5. Trust Indicators
+   4. Trust Indicators
    ========================================================================== */
 .trust-indicators {
     position: absolute;
@@ -178,13 +165,13 @@
     background: rgba(255, 255, 255, 0.6);
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 
-        0 8px 32px rgba(31, 38, 135, 0.1),
-        inset 0 0 0 1.5px rgba(255, 255, 255, 0.3),
-        0 0 20px rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 16px rgba(31, 38, 135, 0.08);
+    backdrop-filter: blur(8px);
     z-index: 5;
+    backface-visibility: hidden;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
 }
 
 .trust-item {
@@ -268,7 +255,7 @@
 }
 
 /* ==========================================================================
-   6. Divisor de Onda
+   5. Divisor de Onda
    ========================================================================== */
 .hero-wave {
     position: absolute;
@@ -277,137 +264,30 @@
     width: 100%;
     height: 200px;
     background: white;
-    clip-path: polygon(
-        0% 60%,
-        15% 65%,
-        30% 60%,
-        45% 65%,
-        60% 60%,
-        75% 65%,
-        90% 60%,
-        100% 65%,
-        100% 100%,
-        0% 100%
-    );
+    clip-path: polygon(0% 60%,
+            15% 65%,
+            30% 60%,
+            45% 65%,
+            60% 60%,
+            75% 65%,
+            90% 60%,
+            100% 65%,
+            100% 100%,
+            0% 100%);
 }
 
 /* ==========================================================================
-   7. Animaciones
+   6. Animaciones
    ========================================================================== */
-@keyframes floatCloud {
-    0% {
-        transform: translate(0) scale(1);
-        filter: blur(0px) brightness(1.05);
-    }
-    50% {
-        transform: translate(-250px, 15px) scale(1.02);
-        filter: blur(1px) brightness(1.02);
-    }
-    100% {
-        transform: translate(0) scale(1);
-        filter: blur(0px) brightness(1.05);
-    }
-}
-
-@keyframes floatCloud2 {
-    0% {
-        transform: translate(0) scale(1);
-        filter: blur(0px) brightness(0.98);
-    }
-    50% {
-        transform: translate(100px, -10px) scale(0.98);
-        filter: blur(1px) brightness(0.95);
-    }
-    100% {
-        transform: translate(0) scale(1);
-        filter: blur(0px) brightness(0.98);
-    }
-}
-
-@keyframes floatCloud3 {
-    0% {
-        transform: translateX(-50%) translateY(0) scale(1);
-        filter: blur(0.5px) brightness(1.02);
-    }
-    50% {
-        transform: translateX(-50%) translateY(-30px) scale(1.01);
-        filter: blur(0px) brightness(1.04);
-    }
-    100% {
-        transform: translateX(-50%) translateY(0) scale(1);
-        filter: blur(0.5px) brightness(1.02);
-    }
-}
-
 @keyframes floatParachute {
-    0% {
-        transform: translate(
-            calc(var(--mouse-x, 0) * 0.7),
-            calc(var(--mouse-y, 0) * 0.7)
-        ) rotate(2deg);
-    }
-    20% {
-        transform: translate(
-            calc(var(--mouse-x, 0) * 0.7 + 12px),
-            calc(var(--mouse-y, 0) * 0.7 - 8px)
-        ) rotate(-1.5deg);
-    }
-    40% {
-        transform: translate(
-            calc(var(--mouse-x, 0) * 0.7 + 5px),
-            calc(var(--mouse-y, 0) * 0.7 - 12px)
-        ) rotate(0deg);
-    }
-    60% {
-        transform: translate(
-            calc(var(--mouse-x, 0) * 0.7 - 8px),
-            calc(var(--mouse-y, 0) * 0.7 - 4px)
-        ) rotate(1deg);
-    }
-    80% {
-        transform: translate(
-            calc(var(--mouse-x, 0) * 0.7 - 12px),
-            calc(var(--mouse-y, 0) * 0.7 - 8px)
-        ) rotate(-1deg);
-    }
-    100% {
-        transform: translate(
-            calc(var(--mouse-x, 0) * 0.7),
-            calc(var(--mouse-y, 0) * 0.7)
-        ) rotate(2deg);
-    }
-}
 
-@keyframes buttonGlow {
-    0%, 100% {
-        box-shadow: 0 0 10px rgba(255, 168, 28, 0.4),
-            0 0 20px rgba(255, 168, 28, 0.3),
-            0 0 30px rgba(255, 168, 28, 0.2);
-        transform: scale(1.05);
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
     }
+
     50% {
-        box-shadow: 0 0 15px rgba(255, 168, 28, 0.6),
-            0 0 30px rgba(255, 168, 28, 0.4),
-            0 0 45px rgba(255, 168, 28, 0.2);
-        transform: scale(1.1);
-    }
-}
-
-@keyframes buttonShine {
-    0% {
-        background-position: 200% center;
-    }
-    100% {
-        background-position: -200% center;
-    }
-}
-
-@keyframes lightEffect {
-    0% {
-        transform: translateX(-100%) rotate(45deg);
-    }
-    100% {
-        transform: translateX(100%) rotate(45deg);
+        transform: translate3d(0, -15px, 0);
     }
 }
 
@@ -416,6 +296,7 @@
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -427,6 +308,7 @@
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -434,67 +316,134 @@
 }
 
 @keyframes blink {
-    0%, 100% {
-        opacity: 1;
+
+    0%,
+    100% {
+        opacity: 0.8;
     }
+
     50% {
-        opacity: 0;
+        opacity: 0.2;
     }
 }
 
 /* ==========================================================================
-   8. Clases de Animación
+   7. Clases de Animación
    ========================================================================== */
 .animate-blink {
     animation: blink 1s step-end infinite;
 }
 
-.animate-float-cloud {
-    animation: floatCloud 35s ease-in-out infinite;
-}
-
-.animate-float-cloud2 {
-    animation: floatCloud2 35s ease-in-out infinite;
-}
-
-.animate-float-cloud3 {
-    animation: floatCloud3 35s ease-in-out infinite;
-}
-
 .animate-float-parachute {
-    animation: floatParachute 8s ease-in-out infinite;
-}
-
-.animate-button-glow {
-    animation: buttonGlow 1.5s ease-in-out infinite;
+    @apply w-full h-auto transform -translate-y-4;
+    animation: float 6s ease-in-out infinite;
 }
 
 /* ==========================================================================
-   9. Media Queries
+   8. Media Queries
    ========================================================================== */
 
 /* Tablet Large (1024px - 1279px) */
 @media (max-width: 1279px) {
-    .hero-container {
-        padding-bottom: 120px;
+    /* Contenedor principal centrado */
+    .hero-content-wrapper {
+        @apply flex flex-col items-center justify-center
+               min-h-screen  /* Asegura altura completa */
+               pt-0 pb-0;    /* Elimina paddings verticales */
     }
 
-    .hero-content {
-        padding: 0 2rem;
+    /* Ajuste del paracaídas */
+    .parachute-wrapper {
+        @apply absolute 
+               top-[15%]    /* Más abajo del navbar */
+               right-[8%]   /* Separación del borde */
+               w-[220px];   /* Tamaño ajustado */
+    }
+
+    /* Contenedor de texto */
+    .hero-text-section {
+        @apply max-w-[90%]
+               mt-0;
+    }
+
+    /* Ajustes de espaciado */
+    .hero-description {
+        @apply mt-8;
+    }
+
+    .hero-buttons {
+        @apply mt-8;
     }
 
     .hero-text {
         font-size: clamp(2.2rem, 3.5vw, 3rem);
     }
 
-    .trust-indicators {
-        width: 95%;
-        top: 80%;
+    .cloud-layer-1 {
+        width: 60%;
+        top: 0%;
+        right: -15%;
+        opacity: 0.8;
+    }
+
+    .cloud-layer-2 {
+        width: 50%;
+        top: 0%;
+        left: -1%;
+        opacity: 0.5;
+    }
+
+    .cloud-layer-3 {
+        width: 100%;
+        transform: scale(1.2);
+        bottom: -5%;
+        left: 0%;
+        opacity: 0.8;
     }
 }
 
 /* Tablet (768px - 1023px) */
 @media (max-width: 1023px) {
+    /* Contenedor principal más abajo */
+    .hero-content-wrapper {
+        @apply flex flex-col items-center justify-center
+               min-h-screen
+               pt-10;  /* Aumentamos padding para bajar más el contenido */
+    }
+
+    /* Paracaídas aún más arriba */
+    .parachute-wrapper {
+        @apply absolute;
+        top: 1%;       /* Subimos más arriba (era 8%) */
+        right: 2%;
+        width: 260px;  /* Un poco más grande */
+    }
+
+    /* Ajustes de nubes con mayor especificidad */
+    .clouds-layer .cloud-layer-1 {
+        width: 65%;    
+        top: -2%;      
+        right: -15%;   
+        opacity: 0.7;  
+    }
+
+    .clouds-layer .cloud-layer-2 {
+        width: 50%;
+        top: 3%;
+        left: 0%;    
+        opacity: 0.6;
+        transform: scale(1.1);  /* Ajuste de escala */
+    }
+
+    .clouds-layer .cloud-layer-3 {
+        width: 110%;   
+        bottom: -5%;   
+        left: -5%;     
+        opacity: 0.8;
+        transform: scale(1.3);
+    }
+
+    /* Mantenemos el resto igual */
     .hero-content {
         height: auto;
         min-height: 140px;
@@ -510,7 +459,7 @@
 
     .hero-description {
         text-align: center;
-        max-width: 80%;
+        max-width: 75%;
         margin: 0 auto;
     }
 
@@ -519,30 +468,6 @@
         margin-top: 2rem;
     }
 
-
-    .cloud-layer-1 {
-        opacity: 0.6;
-        right: -50%;
-        animation: floatCloud 45s ease-in-out infinite;
-    }
-
-    .cloud-layer-2 {
-        opacity: 0.5;
-        left: -15%;
-        animation: floatCloud2 45s ease-in-out infinite;
-    }
-
-    .cloud-layer-3 {
-        opacity: 0.7;
-        bottom: 5%;
-        animation: floatCloud3 45s ease-in-out infinite;
-    }
-
-    .parachute-container {
-        position: absolute;
-        align-items: center;
-        justify-content: center;
-    }
     .trust-indicators {
         bottom: 2rem;
     }
@@ -550,59 +475,269 @@
 
 /* Mobile Large (425px - 767px) */
 @media (max-width: 767px) {
-    .hero-container {
-        padding-bottom: 80px;
+    /* Ajuste del paracaídas */
+    .parachute-wrapper {
+        @apply absolute;
+        top: 2%;
+        right: 2%;
+        width: 180px;  /* Tamaño reducido */
     }
 
-    .hero-content {
-        padding: 1.5rem;
+    /* Nubes ajustadas */
+    .clouds-layer .cloud-layer-1 {
+        width: 85%;     /* Más grande */
+        top: 0%;      
+        right: -25%;   
+        opacity: 0.75;
+        transform: scale(1.2);  /* Escala aumentada */
+    }
+
+    .clouds-layer .cloud-layer-2 {
+        width: 80%;     /* Más grande */
+        top: -5%;       /* Más abajo */
+        left: -30%;    /* Más a la izquierda */
+        opacity: 0.65;
+        transform: scale(1.15);
+    }
+
+    .clouds-layer .cloud-layer-3 {
+        width: 100%;    /* Más ancha */
+        bottom: 0%;   /* Más abajo */
+        left: -20%;     /* Más a la izquierda */
+        opacity: 0.8;
+        transform: scale(2);  /* Más grande */
+    }
+
+    /* Resto de estilos se mantienen igual */
+    .hero-text-section {
+        @apply flex flex-col items-center gap-8;
     }
 
     .hero-text {
-        font-size: clamp(1.8rem, 2.5vw, 2rem);
+        @apply text-[2rem] 
+               text-center
+               max-w-[95%];
     }
 
     .hero-description {
-        max-width: 100%;
-        font-size: 1rem;
+        @apply text-base
+               text-center
+               max-w-[90%];
     }
 
-    .trust-indicators {
-        flex-direction: column;
-        padding: 1rem;
-        top: 75%;
-    }
-    
-    .trust-item {
-        width: 100%;
-        padding: 1rem;
-    }
-
-    .parachute-container {
-        width: 250px;
+    .hero-buttons {
+        @apply w-[90%];
     }
 }
 
 /* Mobile Small (< 425px) */
 @media (max-width: 424px) {
-    .hero-container {
-        padding-bottom: 60px;
+    .parachute-wrapper {
+        width: 150px;  /* Aún más pequeño */
+        top: 3%;
+        right: 0%;
     }
 
+    .clouds-layer .cloud-layer-2 {
+        top: 1%;
+        left: -35%;
+    }
+
+    .clouds-layer .cloud-layer-3 {
+        width: 100%;    /* Más ancha */
+        bottom: 1%;   /* Más abajo */
+        left: -20%;     /* Más a la izquierda */
+        opacity: 0.8;
+        transform: scale(2.2);  /* Más grande */
+    }
+
+
     .hero-text {
-        font-size: 1.5rem;
+        @apply text-[1.8rem];
     }
 
     .hero-description {
-        font-size: 0.9rem;
+        @apply text-sm
+               max-w-[95%];
     }
 
-    .parachute-container {
-        width: 200px;
-    }
-
-    .trust-indicators {
-        top: 70%;
+    .hero-buttons {
+        @apply w-[95%];
     }
 }
 
+/* Reducir animación en dispositivos de bajo rendimiento */
+@media (prefers-reduced-motion: reduce) {
+    .animate-float-parachute {
+        animation: none;
+        transform: translate(0, 0);
+    }
+
+    .button-primary,
+    .button-secondary,
+    .button-primary svg {
+        transition: none;
+        transform: none;
+    }
+}
+
+/* Usar breakpoints más eficientes */
+@media (max-width: 1024px) {
+
+    /* Combinar reglas similares */
+    .hero-content,
+    .hero-text,
+    .hero-description {
+        text-align: center;
+        margin: 0 auto;
+    }
+}
+
+/* Aplicar backdrop-filter solo cuando sea necesario */
+@supports (backdrop-filter: blur(12px)) {
+    .trust-indicators {
+        backdrop-filter: blur(8px);
+    }
+}
+
+/* Ajustes Mobile First */
+@media (max-width: 768px) {
+    .hero-text {
+        @apply text-2xl sm:text-3xl max-w-[85%] mx-auto;
+    }
+
+    .hero-description {
+        @apply text-base max-w-[80%] mx-auto mt-4;
+    }
+
+
+    .parachute-wrapper img {
+        @apply opacity-85;
+        /* Opacidad reducida en mobile */
+    }
+
+    /* Ajuste de nubes para mobile */
+    .cloud-layer-1 {
+        @apply scale-95 opacity-60;
+        top: -0%;
+        right: -15%;
+    }
+
+    .cloud-layer-2 {
+        @apply scale-95 opacity-60;
+        top: 0%;
+        left: -15%;
+    }
+}
+
+/* Ajustes para tablets */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hero-text {
+        @apply text-3xl;
+    }
+
+    .parachute-container {
+        @apply w-[220px];
+    }
+
+
+}
+
+/* Ajustes Mobile First para textos */
+@media (max-width: 375px) {
+    .hero-text {
+        @apply text-2xl max-w-[92%] mx-auto leading-tight;
+    }
+
+    .hero-description {
+        @apply text-base max-w-[90%] mx-auto mt-4 leading-relaxed;
+    }
+}
+
+@media (min-width: 376px) and (max-width: 425px) {
+    .hero-text {
+        @apply text-[1.7rem] max-w-[95%] mx-auto leading-tight;
+    }
+
+    .hero-description {
+        @apply text-base max-w-[92%] mx-auto mt-4;
+    }
+
+    /* Ajuste de nubes para mobile */
+    .cloud-layer-1 {
+        @apply scale-95 opacity-60;
+        top: -0%;
+        right: -15%;
+    }
+
+    .cloud-layer-2 {
+        @apply scale-95 opacity-60;
+        top: 0%;
+        left: -15%;
+    }
+}
+
+@media (min-width: 426px) and (max-width: 768px) {
+    .hero-text {
+        @apply text-3xl max-w-[90%] mx-auto;
+    }
+
+    .hero-description {
+        @apply text-lg max-w-[85%] mx-auto mt-5;
+    }
+}
+
+/* Typing Text Container */
+.typing-wrapper {
+    @apply w-full text-center;
+    min-height: 160px;
+    /* Altura fija para evitar saltos */
+}
+
+.typing-text {
+    @apply text-white font-bold w-full text-center;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.2;
+}
+
+.typing-cursor {
+    @apply inline-block;
+    animation: blink 1s step-end infinite;
+    margin-left: 2px;
+    position: relative;
+    top: -4px;
+}
+
+@keyframes blink {
+
+    from,
+    to {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .typing-wrapper {
+        min-height: 130px;
+        justify-content: center;
+        padding-top: 1.5rem;
+    }
+
+    .typing-text {
+        text-align: center;
+        font-size: clamp(2rem, 3vw, 2.5rem);
+    }
+
+    .hero-description {
+        margin-top: -1.5rem;
+        text-align: center;
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

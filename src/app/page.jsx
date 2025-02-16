@@ -1,11 +1,12 @@
-import HeroBanner from '@/components/HeroBanner.jsx'
-import StepsSection from '@/components/StepsSection.jsx'
-import TrustedProviders from '@/components/TrustedProviders.jsx'
-import Testimonials from '@/components/Testimonials.jsx'
-// import AboutUs from '@/components/AboutUs.jsx'
-import ContactHero from '@/components/ContactHero.jsx'
-import FeaturedServices from '@/components/FeaturedServices.jsx'
+import HeroBanner from '@/components/home/HeroBanner.jsx'
+import StepsSection from '@/components/home/StepsSection.jsx'
+import TrustedProviders from '@/components/home/TrustedProviders.jsx'
+import dynamic from 'next/dynamic'
+import ContactHero from '@/components/home/ContactHero.jsx'
+import FeaturedServices from '@/components/home/FeaturedServices.jsx'
 
+const Testimonials = dynamic(() => import('@/components/home/Testimonials.jsx'))
+const ResourceCenter = dynamic(() => import('@/components/home/ResourceCenter.jsx'))
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <TrustedProviders />
       <FeaturedServices />
       <StepsSection />
+      <ResourceCenter />
       <Testimonials />
       <ContactHero />
 

@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="space-y-6">
             <Link href="/" className="flex items-center space-x-3">
               <Image
-                src="/icons/logo.png"
+                src="/svgs/logos/LOGO.svg"
                 alt="Argentina Importaciones"
                 width={50}
                 height={50}
@@ -74,9 +74,9 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-8">Síguenos</h4>
             <div className="flex items-center gap-3">
               {[
-                { name: 'instagram', icon: 'instagram.png' },
-                { name: 'facebook', icon: 'facebook.png' },
-                { name: 'whatsapp', icon: 'whatsapp.png' }
+                { name: 'instagram', icon: 'INSTAGRAM.svg' },
+                { name: 'facebook', icon: 'FACEBOOK.svg' },
+                { name: 'whatsapp', icon: 'WHATSAPP.svg' }
               ].map((social) => (
                 <a
                   key={social.name}
@@ -87,7 +87,7 @@ const Footer = () => {
                   <div className="w-11 h-11 flex items-center justify-center rounded-full 
                     bg-white/5 group-hover:bg-orange/20 transition-all duration-300">
                     <Image
-                      src={`/icons/${social.icon}`}
+                      src={`/svgs/icons/${social.icon}`}
                       alt={social.name}
                       width={22}
                       height={22}

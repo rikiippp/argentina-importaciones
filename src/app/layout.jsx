@@ -1,7 +1,9 @@
 import { Roboto } from 'next/font/google'
-import Navbar from '@/components/layout/Navbar'
-import Footer from '@/components/layout/Footer'
+import Navbar from '@/components/layout/Navbar.jsx'
+import Footer from '@/components/layout/Footer.jsx'
 import './globals.css'
+import '../styles/buttons.css'
+  
 
 const roboto = Roboto({ 
   subsets: ['latin'],
@@ -13,10 +15,11 @@ export const metadata = {
   title: 'Argentina Importaciones',
   description: 'Servicios de importación en Argentina',
   icons: {
-    icon: '/icons/logo.png',
-    shortcut: '/icons/logo.png',
-    apple: '/icons/logo.png',
+    icon: '/svgs/logos/LOGO.svg',
+    shortcut: '/svgs/logos/LOGO.svg',
+    apple: '/svgs/logos/LOGO.svg',
   },
+
 
 }
 
@@ -24,20 +27,23 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <head>
+        <link rel="icon" href="/svgs/logos/LOGO.svg" />
         <link 
-          href="https://fonts.cdnfonts.com/css/akira-expanded" 
-          rel="stylesheet"
+          rel="preload" 
+          href="/webps/images/BOX-PARACHUTE.webp" 
+          as="image"
         />
-        <link rel="icon" href="/icons/logo.png" />
       </head>
       <body className={`${roboto.variable} font-roboto`}>
-        <div className="min-h-screen flex flex-col">
-          <Navbar />
-          <main className="flex-grow">
-            {children}
-          </main>
-          <Footer />
-        </div>
+        <main>
+          <div className="min-h-screen flex flex-col">
+            <Navbar />
+            <main className="flex-grow relative z-10">
+              {children}
+            </main>
+            <Footer />
+          </div>
+        </main>
       </body>
     </html>
   )

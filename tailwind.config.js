@@ -1,7 +1,9 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const config = {
   content: [
-    "./src/**/*.{js,jsx}",
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
@@ -9,7 +11,7 @@ module.exports = {
         'smoky': '#0A0903',
         'orange': {
           DEFAULT: '#FFA81C',
-          hover: '#ff9903'  // Una versión más oscura para hover
+          hover: '#ff9903'
         },
         'mint': '#ACEB98',
         'moonstone': '#00B2CA',
@@ -19,18 +21,10 @@ module.exports = {
         roboto: ['Roboto', 'sans-serif'],
         akira: ['Akira Expanded', 'sans-serif'],
       },
-      keyframes: {
-        blink: {
-          '0%, 100%': { opacity: 1 },
-          '50%': { opacity: 0 },
-        }
-      },
-      animation: {
-        blink: 'blink 1s step-end infinite',
-        buttonGlow: 'buttonGlow 2s ease-in-out infinite',
-      }
     },
   },
   plugins: [],
 }
+
+export default config
 
