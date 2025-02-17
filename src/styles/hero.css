@@ -745,8 +745,8 @@
 @media (min-width: 1024px) {
     .hero-content-wrapper {
         @apply items-start
-               px-20                    /* Más espacio horizontal */
-               pt-16;                   /* Bajamos un poco el contenido */
+               px-20                    
+               pt-40;                   /* Aumentamos el padding top (era pt-16) */
     }
 
     .hero-text-section {
@@ -777,9 +777,34 @@
     }
 
     .parachute-wrapper {
-        @apply top-[50%]
-               right-[8%]              /* Más cerca del contenido */
-               w-[400px] lg:w-[450px]  /* Paracaídas significativamente más grande */
+        @apply top-[55%]
+               right-[8%]              
+               w-[300px] lg:w-[400px]  /* Reducimos el tamaño (era w-[400px] lg:w-[450px]) */
                -translate-y-1/2;
+    }
+
+    /* Ajustes de nubes para desktop */
+    .clouds-layer .cloud-layer-1 {
+        @apply absolute;
+        width: 750px;
+        top: 0%;
+        right: -10%;
+        opacity: 0.8;
+    }
+
+    .clouds-layer .cloud-layer-2 {
+        @apply absolute;
+        width: 750px;
+        top: 0%;
+        left: -1%;
+        opacity: 0.7;
+    }
+
+    .clouds-layer .cloud-layer-3 {
+        @apply absolute;
+        width: 1920px;
+        bottom: -22%;
+        left: 0%;
+        opacity: 0.6;
     }
 }

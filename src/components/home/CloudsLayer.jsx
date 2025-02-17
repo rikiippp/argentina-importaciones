@@ -25,7 +25,7 @@ export default function CloudsLayer() {
                 <Image
                     src="/webps/images/CLOUD-3.webp"
                     alt=""
-                    width={3010}
+                    width={1920}
                     height={800}
                     className="cloud-layer-3"
                     priority
