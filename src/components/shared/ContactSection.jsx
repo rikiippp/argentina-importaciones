@@ -7,21 +7,21 @@ const ContactSection = () => {
     <section className="py-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <motion.span 
+          <motion.span
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             className="text-orange font-medium"
           >
             Contacto
           </motion.span>
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="text-3xl md:text-4xl font-bold mt-2"
           >
             ¿Necesitás ayuda con tu importación?
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="text-gray-600 mt-4 max-w-2xl mx-auto"
@@ -32,7 +32,7 @@ const ContactSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Formulario */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             className="bg-white rounded-2xl shadow-xl p-8"
@@ -64,7 +64,7 @@ const ContactSection = () => {
                   />
                 </div>
               </div>
-              
+
               <div>
                 <label htmlFor="telefono" className="block text-sm font-medium text-gray-700 mb-2">
                   Teléfono/WhatsApp
@@ -89,8 +89,8 @@ const ContactSection = () => {
                 >
                   <option value="">Seleccionar tipo de consulta</option>
                   <option value="importacion">Importación general</option>
-                  <option value="courier">Courier internacional</option>
-                  <option value="container">Container completo</option>
+                  <option value="capacitacion">Capacitación</option>
+                  <option value="asesoria">Asesoría en importación</option>
                   <option value="otro">Otra consulta</option>
                 </select>
               </div>
@@ -118,7 +118,7 @@ const ContactSection = () => {
           </motion.div>
 
           {/* Información de contacto */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             className="space-y-8 md:pl-8"
@@ -144,7 +144,7 @@ const ContactSection = () => {
                 <HiMail className="w-6 h-6 text-orange flex-shrink-0 mt-1" />
                 <div>
                   <h4 className="font-medium">Email</h4>
-                  <p className="text-gray-600">contacto@argentinaimportaciones.com</p>
+                  <p className="text-gray-600">info@argentinaimportaciones.com</p>
                 </div>
               </div>
 
@@ -153,7 +153,7 @@ const ContactSection = () => {
                 <div>
                   <h4 className="font-medium">Dirección</h4>
                   <p className="text-gray-600">Av. Ejemplo 1234, Piso 4</p>
-                  <p className="text-gray-600">Buenos Aires, Argentina</p>
+                  <p className="text-gray-600">Cordoba, Argentina</p>
                 </div>
               </div>
 
@@ -169,7 +169,16 @@ const ContactSection = () => {
 
             {/* Mapa o imagen de ubicación */}
             <div className="rounded-xl overflow-hidden h-48 bg-gray-100">
-              {/* Aquí puedes agregar un mapa de Google o una imagen */}
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d217954.32133151474!2d-64.35902263110387!3d-31.39934778873513!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9432985f478f5b69%3A0xb0a24f9a5366b092!2zQ8OzcmRvYmEsIEPDs3Jkb2JhIFByb3ZpbmNl!5e0!3m2!1sen!2sar!4v1739782847231!5m2!1sen!2sar" 
+                width="100%" 
+                height="100%" 
+                style={{ border: 0 }}
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full"
+              />
             </div>
           </motion.div>
         </div>

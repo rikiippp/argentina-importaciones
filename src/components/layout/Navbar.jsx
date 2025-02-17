@@ -62,10 +62,10 @@ export default function Navbar() {
   }, [isMenuOpen])
 
   const navLinks = [
-    { href: '/', label: 'Inicio', section: 'hero' },
+    { href: '/#', label: 'Inicio', section: 'hero' },
     { href: '/nosotros', label: 'Nosotros', section: 'about' },
     { href: '/servicios', label: 'Servicios', section: 'services' },
-    { href: '/', label: '¿Qué puedo traer?', section: 'products' },
+    { href: '/products', label: '¿Qué puedo traer?', section: 'products' },
     { href: '/contacto', label: 'Contacto', section: 'contact' }
   ]
 
@@ -97,7 +97,7 @@ export default function Navbar() {
               <div className={`font-akira flex flex-col transition-colors duration-300 ${
                 (scrolled && !isMenuOpen) || !isHomePage ? 'text-smoky' : 'text-white'
               }`}>
-                <span className="text-xl leading-tight">ARGENTINA</span>
+                <span className="text-xl leading-tight ">ARGENTINA</span>
                 <span className="text-sm -mt-1">IMPORTACIONES</span>
               </div>
             </Link>
@@ -137,13 +137,13 @@ export default function Navbar() {
           >
             <div className="relative w-6 h-5">
               <span className={`absolute w-full h-0.5 top-0 transition-colors duration-300
-                ${scrolled || isMenuOpen ? 'bg-smoky' : 'bg-white'}
+                ${isHomePage && !scrolled ? 'bg-white' : 'bg-smoky'}
               `} />
               <span className={`absolute w-full h-0.5 top-2 transition-colors duration-300
-                ${scrolled || isMenuOpen ? 'bg-smoky' : 'bg-white'}
+                ${isHomePage && !scrolled ? 'bg-white' : 'bg-smoky'}
               `} />
               <span className={`absolute w-full h-0.5 top-4 transition-colors duration-300
-                ${scrolled || isMenuOpen ? 'bg-smoky' : 'bg-white'}
+                ${isHomePage && !scrolled ? 'bg-white' : 'bg-smoky'}
               `} />
             </div>
           </button>

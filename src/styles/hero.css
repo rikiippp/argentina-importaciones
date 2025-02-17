@@ -686,7 +686,6 @@
         @apply text-lg max-w-[85%] mx-auto mt-5;
     }
 }
-
 /* Typing Text Container */
 .typing-wrapper {
     @apply w-full text-center;
@@ -739,5 +738,48 @@
         max-width: 90%;
         margin-left: auto;
         margin-right: auto;
+    }
+}
+
+/* Solo modificamos las clases necesarias y agregamos media query para desktop */
+@media (min-width: 1024px) {
+    .hero-content-wrapper {
+        @apply items-start
+               px-20                    /* Más espacio horizontal */
+               pt-16;                   /* Bajamos un poco el contenido */
+    }
+
+    .hero-text-section {
+        @apply items-start
+               min-h-[400px];          /* Aumentamos más la altura */
+    }
+
+    .hero-content {
+        @apply min-h-[320px];          /* Aumentamos altura del contenedor */
+    }
+
+    .hero-text {
+        @apply text-left
+               text-[3.5rem] lg:text-[4.2rem];  /* Ajustamos tamaño de fuente */
+    }
+
+    .hero-description {
+        @apply text-left
+               ml-0
+               max-w-[85%]
+               mt-8;                    /* Reducimos espacio después del título */
+    }
+
+    .hero-buttons {
+        @apply justify-start
+               ml-0
+               mt-8;                    /* Reducimos espacio después de la descripción */
+    }
+
+    .parachute-wrapper {
+        @apply top-[50%]
+               right-[8%]              /* Más cerca del contenido */
+               w-[400px] lg:w-[450px]  /* Paracaídas significativamente más grande */
+               -translate-y-1/2;
     }
 }

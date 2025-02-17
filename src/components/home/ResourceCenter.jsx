@@ -6,35 +6,34 @@ const resources = [
   {
     title: 'Guías y Documentación',
     description: 'Documentos y guías paso a paso para entender el proceso de importación.',
-    icon: '/icons/guide-icon.svg',
+    icon: '/webps/images/NO-IMAGE.webp',
     link: '/guias',
     color: 'from-orange-500/10 to-orange-600/5'
   },
   {
-    title: 'Preguntas Frecuentes',
-    description: 'Respuestas a todas tus dudas sobre importación, costos y procesos.',
-    icon: '/icons/faq-icon.svg',
-    link: '/faq',
+    title: 'Calculadora',
+    description: 'Calcula los costos aproximados de tu importación.',
+    icon: '/webps/images/NO-IMAGE.webp',
+    link: '/calculadora',
     color: 'from-orange-400/10 to-orange-500/5'
   },
   {
-    title: 'Calculadoras',
-    description: 'Herramientas para calcular costos, tiempos y viabilidad de tu importación.',
-    icon: '/icons/calc-icon.svg',
-    link: '/calculadoras',
+    title: 'Preguntas Frecuentes',
+    description: 'Respuestas a todas tus dudas sobre importación, costos y procesos.',
+    icon: '/webps/images/NO-IMAGE.webp',
+    link: '/contacto#faq',
     color: 'from-orange-300/10 to-orange-400/5'
   }
 ];
 
-const ResourceCenter = () => {
+export default function ResourceCenter() {
   return (
     <section className="py-20 lg:py-32 relative overflow-hidden">
-
       <div className="container mx-auto px-4 relative">
         {/* Header */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           className="text-center mb-16 md:mb-24"
         >
@@ -47,15 +46,19 @@ const ResourceCenter = () => {
           </p>
         </motion.div>
 
-        {/* Grid de Recursos */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 mb-16">
+        {/* Grid de Recursos - Optimizado */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
           {resources.map((resource, index) => (
             <motion.div
               key={resource.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
+              transition={{ 
+                duration: 0.3,
+                delay: index * 0.1,
+                ease: [0.25, 0.1, 0.25, 1]
+              }}
               className="group"
             >
               <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 h-full">
@@ -102,6 +105,4 @@ const ResourceCenter = () => {
       </div>
     </section>
   );
-};
-
-export default ResourceCenter; 
+} 

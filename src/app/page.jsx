@@ -18,7 +18,6 @@ export default function Home() {
       <ResourceCenter />
       <Testimonials />
       <ContactHero />
-
     </main>
   )
 } 

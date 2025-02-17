@@ -3,6 +3,7 @@ import Navbar from '@/components/layout/Navbar.jsx'
 import Footer from '@/components/layout/Footer.jsx'
 import './globals.css'
 import '../styles/buttons.css'
+import ScrollToTop from '@/components/common/ScrollToTop'
   
 
 const roboto = Roboto({ 
@@ -44,6 +45,7 @@ export default function RootLayout({ children }) {
             <Footer />
           </div>
         </main>
+        <ScrollToTop />
       </body>
     </html>
   )

@@ -87,9 +87,11 @@ export default function StepsSection() {
 
   return (
     <section ref={containerRef} className="py-12 md:py-16 lg:py-24 relative overflow-hidden">
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-10 w-20 h-20 bg-orange/10 rounded-full blur-xl" />
-        <div className="absolute bottom-20 right-10 w-32 h-32 bg-blue-400/10 rounded-full blur-xl" />
+      <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 to-white">
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-20 left-10 w-20 h-20 bg-orange/10 rounded-full blur-xl" />
+          <div className="absolute bottom-20 right-10 w-32 h-32 bg-blue-400/10 rounded-full blur-xl" />
+        </div>
       </div>
 
       <div className="container mx-auto px-4 md:px-6 relative">
@@ -110,7 +112,6 @@ export default function StepsSection() {
           </p>
         </motion.div>
 
-        {/* Línea horizontal para desktop */}
         <div className="hidden lg:block absolute top-[35%] left-0 w-full h-[2px] bg-gray-100">
           <motion.div 
             className="h-full bg-gradient-to-r from-orange/20 via-orange/30 to-orange/20"
@@ -122,12 +123,7 @@ export default function StepsSection() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 sm:gap-12 md:gap-16 lg:gap-20 max-w-[90rem] mx-auto relative px-4 sm:px-0">
-          {/* Línea vertical para mobile */}
-          <div className="lg:hidden absolute left-4 w-[2px] h-[100%] bg-gradient-to-b from-transparent via-gray-100 to-transparent"
-            style={{
-              top: '-10px'
-            }}
-          >
+          <div className="lg:hidden absolute left-4 w-[2px] h-[100%] bg-gradient-to-b from-transparent via-gray-100 to-transparent">
             <motion.div 
               className="w-full bg-gradient-to-b from-orange/10 via-orange/40 to-orange/10"
               style={{ 
@@ -141,16 +137,18 @@ export default function StepsSection() {
           {steps.map((step, index) => (
             <motion.div
               key={step.number}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
+              transition={{ 
+                duration: 0.4,
+                delay: index * 0.1,
+                ease: [0.25, 0.1, 0.25, 1]
+              }}
               className="relative px-6 sm:px-0 group hover:scale-[1.02] transition-transform duration-300"
             >
-              {/* Indicador de paso actual */}
               <div className="absolute -left-2 top-1/2 w-2 h-2 rounded-full bg-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300 lg:hidden" />
               
-              {/* Resto del contenido existente */}
               <motion.div 
                 className="absolute -top-6 md:-top-8 lg:-top-10 left-2 sm:left-0 text-5xl md:text-6xl lg:text-7xl font-bold"
                 style={{ 
@@ -163,7 +161,6 @@ export default function StepsSection() {
                 {step.number}
               </motion.div>
 
-              {/* Mejora en la presentación y centrado de imágenes */}
               <div className="mb-8 sm:mb-4 md:mb-6 relative h-[220px] sm:h-[220px] md:h-[250px] lg:h-[280px] flex items-center justify-center">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
