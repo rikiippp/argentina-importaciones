@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState, useRef, useMemo } from 'react'
+import { motion } from 'framer-motion'
 import Image from 'next/image'
 // import TrustIndicators from './TrustIndicators.jsx'
 import '../../styles/hero.css'
@@ -8,52 +8,6 @@ import CloudsLayer from './CloudsLayer.jsx'
 
 
 export default function HeroBanner() {
-  const [textIndex, setTextIndex] = useState(0)
-  const [displayText, setDisplayText] = useState("Conectamos tu empresa con China, importando calidad")
-  const [isDeleting, setIsDeleting] = useState(false)
-
-  const memoizedTexts = useMemo(() => [
-    "Conectamos tu empresa con China, importando calidad",
-    "Llevamos tu negocio al siguiente nivel con productos exclusivos",
-    "Importaciones rápidas, seguras y sin complicaciones"
-  ], [])
-
-  useEffect(() => {
-    const initialDelay = setTimeout(() => {
-      setIsDeleting(true)
-    }, 3000)
-
-    return () => clearTimeout(initialDelay)
-  }, [])
-
-  useEffect(() => {
-    const typeSpeed = 80
-    const deleteSpeed = 40
-    const pauseTime = 4000
-
-    const type = () => {
-      const currentText = memoizedTexts[textIndex]
-
-      if (!isDeleting) {
-        setDisplayText(currentText.substring(0, displayText.length + 1))
-
-        if (displayText === currentText) {
-          setTimeout(() => setIsDeleting(true), pauseTime)
-        }
-      } else {
-        setDisplayText(currentText.substring(0, displayText.length - 2))
-
-        if (displayText === '') {
-          setIsDeleting(false)
-          setTextIndex((prev) => (prev + 1) % memoizedTexts.length)
-        }
-      }
-    }
-
-    const timer = setTimeout(type, isDeleting ? deleteSpeed : typeSpeed)
-    return () => clearTimeout(timer)
-  }, [displayText, isDeleting, textIndex, memoizedTexts])
-
   return (
     <section className="hero-container">
       {/* Background y gradiente */}
@@ -77,15 +31,24 @@ export default function HeroBanner() {
         </div>
 
         {/* Texto y botones */}
-        <div className="hero-text-section">
+        <motion.div 
+          className="hero-text-section"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, ease: 'easeOut' }}
+        >
           <div className="hero-content">
             <h1 className="hero-text">
-              {displayText}
-              <span className="animate-blink">|</span>
+              Conectamos tu empresa
+              <br />
+              con <span className="text-orange">China</span>, importando
+              <br />
+              <span className="text-orange">calidad</span>
             </h1>
           </div>
           <p className="hero-description">
-            Nuestro equipo transforma desafíos en oportunidades, guiándote en cada paso para que puedas expandir tu negocio de manera segura y eficiente.</p>
+            Nuestro equipo transforma desafíos en oportunidades, guiándote en cada paso para que puedas expandir tu negocio de manera segura y eficiente.
+          </p>
           <div className="hero-buttons">
             <button
               className="button-base button-primary text-white px-6 py-3 rounded-md font-medium flex items-center justify-center"
@@ -112,7 +75,7 @@ export default function HeroBanner() {
               Explorar Servicios
             </button>
           </div>
-        </div>
+        </motion.div>
 
         {/* Trust Indicators */}
         {/* <div className="trust-indicators">

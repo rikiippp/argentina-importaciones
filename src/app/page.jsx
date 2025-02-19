@@ -1,5 +1,5 @@
 import HeroBanner from '@/components/home/HeroBanner.jsx'
-import StepsSection from '@/components/home/StepsSection.jsx'
+// import StepsSection from '@/components/home/StepsSection.jsx'
 import TrustedProviders from '@/components/home/TrustedProviders.jsx'
 import dynamic from 'next/dynamic'
 import ContactHero from '@/components/home/ContactHero.jsx'
@@ -14,7 +14,7 @@ export default function Home() {
       <HeroBanner />
       <TrustedProviders />
       <FeaturedServices />
-      <StepsSection />
+      {/* <StepsSection /> */}
       <ResourceCenter />
       <Testimonials />
       <ContactHero />

@@ -1,0 +1,69 @@
+/* Feature Cards */
+.feature-card {
+  @apply bg-white p-8 rounded-2xl relative overflow-hidden transition-all duration-300;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.feature-card:hover {
+  @apply shadow-lg;
+  transform: translateY(-2px);
+}
+
+.feature-stats {
+  @apply flex flex-col mb-6;
+}
+
+.stats-number {
+  @apply text-5xl font-bold text-orange mb-1;
+  opacity: 0.9;
+}
+
+.stats-label {
+  @apply text-sm text-gray-500 uppercase tracking-wider;
+}
+
+.feature-title {
+  @apply text-2xl font-bold text-gray-800 mb-4;
+}
+
+.feature-description {
+  @apply text-gray-600 leading-relaxed;
+}
+
+/* Buttons */
+.btn-primary {
+  @apply inline-flex items-center bg-white text-blue-600 px-8 py-4 rounded-lg 
+         font-semibold hover:bg-orange hover:text-white transition-all duration-300 
+         shadow-lg hover:shadow-xl;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center bg-blue-700 text-white px-8 py-4 rounded-lg 
+         font-semibold hover:bg-blue-800 transition-all duration-300 
+         border border-white/20;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .feature-card {
+    @apply p-6;
+  }
+
+  .stats-number {
+    @apply text-4xl;
+  }
+
+  .feature-title {
+    @apply text-xl;
+  }
+}
+
+@media (max-width: 640px) {
+  .feature-card {
+    @apply p-5;
+  }
+
+  .stats-number {
+    @apply text-3xl;
+  }
+} 
